@@ -18,24 +18,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TestFunctionalLibrary {
 
     private static final List<String> LOREM_IPSUM = List.of(
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt".split("\\s")
-    );
+            "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt".split("\\s"));
+
+    @Test
+    void testIdentity() {
+        int input = 3;
+        assertEquals(input, Function.identity().call(input));
+    }
 
     @Test
     void testTransform() {
         assertEquals(
-            // CHECKSTYLE: MagicNumber OFF
-            List.of(5, 5, 5, 3, 4, 11, 10, 4, 3, 2, 7, 6, 10),
-            // CHECKSTYLE: MagicNumber ON
-            transform(LOREM_IPSUM, new Function<String, Integer>() {
-                @Override
-                public Integer call(final String input) {
-                    return input.length();
-                }
-            })
-        );
+                // CHECKSTYLE: MagicNumber OFF
+                List.of(5, 5, 5, 3, 4, 11, 10, 4, 3, 2, 7, 6, 10),
+                // CHECKSTYLE: MagicNumber ON
+                transform(LOREM_IPSUM, new Function<String, Integer>() {
+                    @Override
+                    public Integer call(final String input) {
+                        return input.length();
+                    }
+                }));
     }
-
 
     @Test
     void testFlatten() {
@@ -58,12 +61,10 @@ class TestFunctionalLibrary {
             }
         };
         assertEquals(
-            List.of("sit", "amet", "adipiscing", "sed"),
-            select(LOREM_IPSUM, startsWithAOrS)
-        );
+                List.of("sit", "amet", "adipiscing", "sed"),
+                select(LOREM_IPSUM, startsWithAOrS));
         assertEquals(
-            List.of("Lorem", "ipsum", "dolor", "consectetur", "elit", "do", "eiusmod", "tempor", "incididunt"),
-            reject(LOREM_IPSUM, startsWithAOrS)
-        );
+                List.of("Lorem", "ipsum", "dolor", "consectetur", "elit", "do", "eiusmod", "tempor", "incididunt"),
+                reject(LOREM_IPSUM, startsWithAOrS));
     }
 }
