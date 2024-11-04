@@ -45,33 +45,30 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
 
         private int index = 0;
 
-        // Restituisce true se esiste un prossimo elemento valido
         @Override
         public boolean hasNext() {
-
-            for (int current = this.index; current < IterableWithPolicyImpl.this.array.length; current++) {
-                if (IterableWithPolicyImpl.this.filter
-                        .test(IterableWithPolicyImpl.this.array[current])) {
+            int current = this.index;
+            while (current < array.length) {
+                if (filter.test(IterableWithPolicyImpl.this.array[current])) {
                     return true;
                 }
+                current++;
             }
 
             return false;
         }
 
-        // Returns the next valid element
         @Override
         public T next() {
-            for (int current = this.index; current < IterableWithPolicyImpl.this.array.length; current++) {
-                if (IterableWithPolicyImpl.this.filter
-                        .test(IterableWithPolicyImpl.this.array[current])) {
-                    index = current + 1;
+            int current = this.index;
+            while (current < array.length) {
+                if (filter.test(IterableWithPolicyImpl.this.array[current])) {
                     return IterableWithPolicyImpl.this.array[current];
                 }
+                current++;
             }
 
             throw new NoSuchElementException();
         }
-
     }
 }
