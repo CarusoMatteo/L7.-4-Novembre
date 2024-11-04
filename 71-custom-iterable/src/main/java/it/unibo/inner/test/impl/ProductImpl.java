@@ -2,7 +2,6 @@ package it.unibo.inner.test.impl;
 
 import it.unibo.inner.test.api.Product;
 
-
 /**
  * Product implementation.
  * 
@@ -14,9 +13,9 @@ public class ProductImpl implements Product {
 
     /**
      * @param n
-     *            the product name
+     *          the product name
      * @param q
-     *            the product quantity
+     *          the product quantity
      */
     public ProductImpl(final String n, final double q) {
         super();
@@ -54,9 +53,9 @@ public class ProductImpl implements Product {
     @Override
     public final boolean equals(final Object obj) {
         return obj == this
-            || obj instanceof ProductImpl p
-            && p.getClass().equals(this.getClass()) // Breaks the symmetry otherwise
-            && p.name.equals(name);
+                || obj instanceof ProductImpl p
+                        && p.getClass().equals(this.getClass()) // Breaks the symmetry otherwise
+                        && p.name.equals(name);
     }
 
     /**
