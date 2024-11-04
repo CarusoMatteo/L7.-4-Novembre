@@ -17,7 +17,7 @@ public class TestIterableWithPolicy {
     }
 
     private static <T> IterableWithPolicy<T> getIterableWithPolicy(T[] elements, Predicate<T> filter) {
-        return null; // TODO: return the implementation of IterableWithPolicy
+        return new IterableWithPolicyImpl<>(elements, filter);
     }
 
     private static <T> IterableWithPolicy<T> getIterableWithPolicy(T[] elements) {
