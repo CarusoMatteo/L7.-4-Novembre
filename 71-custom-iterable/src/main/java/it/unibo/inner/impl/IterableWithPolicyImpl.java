@@ -62,7 +62,8 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
         public T next() {
             int current = this.index;
             while (current < array.length) {
-                if (filter.test(IterableWithPolicyImpl.this.array[current])) {
+                if (IterableWithPolicyImpl.this.filter.test(IterableWithPolicyImpl.this.array[current])) {
+                    this.index = current + 1;
                     return IterableWithPolicyImpl.this.array[current];
                 }
                 current++;
